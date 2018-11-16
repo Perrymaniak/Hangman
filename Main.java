@@ -24,10 +24,6 @@ public class Main {
     public char[] loadIntoArray(String word){
         char[] list;
         list = word.toCharArray();
-//        for(int i=0; i<word.length(); i++){ //TEST
-//            System.out.println(list[i]);
-//        }
-//        System.out.println(list);
         return list;
     }
 
@@ -44,14 +40,7 @@ public class Main {
             return list;
         }else{
             list[place] = '.';
-        }
 
-        for(int i=0; i<list.length; i++){
-            System.out.print(list[i]);
-        }
-        System.out.println();
-        for(int i=0; i<invisibleList.length; i++){
-            System.out.print(invisibleList[i]);
         }
 
         return list;
@@ -67,37 +56,22 @@ public class Main {
       char[] invisibleList = word.toCharArray();
       mejn.fillList(list);
 
-
-
-      //TEST vvvv
-
-//        for(int i=0; i<list.length; i++){
-//            System.out.print(list[i]);
-//        }
       System.out.print("Wylosowana fraza: ");
       for(int i=0; i<invisibleList.length; i++){
           System.out.print(invisibleList[i]);
       }
-      //TEST ^^^^
 
       System.out.println("\n\n\n");
 
       Scanner skaner = new Scanner(System.in);
       System.out.println("Podaj literę: ");
       char letter = skaner.next().charAt(0);
-      System.out.println("Podaj numer miejsca: ");
-      int place = skaner.nextInt();
+      System.out.println("Podaj numer miejsca: \n");
+      int place = skaner.nextInt()-1;
 
 
       System.out.println(mejn.makeAGuess(letter, place, list, invisibleList));
 
-      for(int i=0; i<list.length; i++){
-          System.out.print(list[i]);
-      }
-      System.out.println();
-      for(int i=0; i<invisibleList.length; i++){
-          System.out.print(invisibleList[i]);
-      }
   }
   }
 
