@@ -5,7 +5,8 @@ import static java.lang.Character.toLowerCase;
 
 public class Main {
 
-    public String takeWord() throws  IOException{
+
+    private String takeWord() throws  IOException{
         FileReader fileReader = new FileReader("E:\\Serious Projects\\Hangman\\src\\Words");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         Random rand = new Random();
@@ -21,59 +22,64 @@ public class Main {
         return lines.get(randIndex);
     }
 
-    public char[] loadIntoArray(String word){
-        char[] list;
-        list = word.toCharArray();
-        return list;
-    }
-
-    public char[] fillList(char[] list){
+    private void fillList(char[] list){
         for(int i=0; i<list.length; i++){
             list[i] = '.';
         }
-        return list;
     }
 
-    public char[] makeAGuess(char letter, int place, char[] list, char[] invisibleList){
+    private char[] makeAGuess(char letter, int place, char[] list, char[] invisibleList){
         list[place] = letter;
         if(list[place] == invisibleList[place]){
             return list;
         }else{
             list[place] = '.';
-
         }
 
         return list;
     }
 
+    private int addErrorCounter(int errCount){
+        errCount++;
+        return errCount;
+    }
+
 
   public static void main(String[] args) throws IOException {
-
-        Main mejn = new Main();
-      String word = mejn.takeWord();
-      mejn.loadIntoArray(word);
-      char[] list = new char[word.length()];
-      char[] invisibleList = word.toCharArray();
-      mejn.fillList(list);
-
-      System.out.print("Wylosowana fraza: ");
-      for(int i=0; i<invisibleList.length; i++){
-          System.out.print(invisibleList[i]);
-      }
-
-      System.out.println("\n\n\n");
-
-      Scanner skaner = new Scanner(System.in);
-      System.out.println("Podaj literę: ");
-      char letter = skaner.next().charAt(0);
-      System.out.println("Podaj numer miejsca: \n");
-      int place = skaner.nextInt()-1;
+      int errCount = 0;
 
 
-      System.out.println(mejn.makeAGuess(letter, place, list, invisibleList));
+          Main mejn = new Main();
+          String word = mejn.takeWord();
+          char[] list = new char[word.length()];
+          char[] invisibleList = word.toCharArray();
+          mejn.fillList(list);
 
+          System.out.print("Wylosowana fraza: ");
+          for (char anInvisibleList : invisibleList) {
+              System.out.print(anInvisibleList);
+          }
+
+          System.out.println("\n\n\n");
+      do {
+          Scanner skaner = new Scanner(System.in);
+          System.out.print("Podaj literę: ");
+          char letter = skaner.next().charAt(0);
+          System.out.print("Podaj numer miejsca: ");
+          int place = skaner.nextInt() - 1;
+
+
+          System.out.println(mejn.makeAGuess(letter, place, list, invisibleList));
+
+//          errCount=mejn.addErrorCounter(errCount);
+
+      }while(errCount<5);
   }
   }
+
+
+  //TODO: Exception handling
+//TODO: Error counting
 
 
 
