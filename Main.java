@@ -28,15 +28,34 @@ public class Main {
         }
     }
 
-    private char[] makeAGuess(char letter, int place, char[] list, char[] invisibleList){
+//    private char[] makeAGuess(char letter, int place, char[] list, char[] invisibleList){
+//        list[place] = letter;
+//        if(list[place] == invisibleList[place]){
+//            return list;
+//        }else{
+//            list[place] = '.';
+//        }
+//
+//        return list;
+//    }
+
+    private boolean makeAGuess(char letter, int place, char[] list, char[] invisibleList){
         list[place] = letter;
         if(list[place] == invisibleList[place]){
-            return list;
+            for(int i=0; i<list.length; i++){
+                System.out.print(list[i]);
+            }
+
+            return true;
         }else{
             list[place] = '.';
         }
 
-        return list;
+        for(int i=0; i<list.length; i++){
+            System.out.print(list[i]);
+        }
+
+        return false;
     }
 
     private int addErrorCounter(int errCount){
@@ -47,7 +66,6 @@ public class Main {
 
   public static void main(String[] args) throws IOException {
       int errCount = 0;
-
 
           Main mejn = new Main();
           String word = mejn.takeWord();
@@ -61,6 +79,7 @@ public class Main {
           }
 
           System.out.println("\n\n\n");
+          int goodCount = list.length;
       do {
           Scanner skaner = new Scanner(System.in);
           System.out.print("Podaj literę: ");
@@ -69,17 +88,21 @@ public class Main {
           int place = skaner.nextInt() - 1;
 
 
-          System.out.println(mejn.makeAGuess(letter, place, list, invisibleList));
+          //System.out.println(mejn.makeAGuess(letter, place, list, invisibleList));
+          if(mejn.makeAGuess(letter,place,list,invisibleList)==false){
+              errCount++;
+          }else{
+              goodCount--;
+          }
 
 //          errCount=mejn.addErrorCounter(errCount);
 
-      }while(errCount<5);
+      }while(errCount<5 && goodCount>0);
   }
   }
 
 
   //TODO: Exception handling
-//TODO: Error counting
 
 
 
