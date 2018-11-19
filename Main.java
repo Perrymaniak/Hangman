@@ -28,17 +28,6 @@ public class Main {
         }
     }
 
-//    private char[] makeAGuess(char letter, int place, char[] list, char[] invisibleList){
-//        list[place] = letter;
-//        if(list[place] == invisibleList[place]){
-//            return list;
-//        }else{
-//            list[place] = '.';
-//        }
-//
-//        return list;
-//    }
-
     private boolean makeAGuess(char letter, int place, char[] list, char[] invisibleList){
         list[place] = letter;
         if(list[place] == invisibleList[place]){
@@ -57,12 +46,6 @@ public class Main {
 
         return false;
     }
-
-    private int addErrorCounter(int errCount){
-        errCount++;
-        return errCount;
-    }
-
 
   public static void main(String[] args) throws IOException {
       int errCount = 0;
@@ -87,9 +70,7 @@ public class Main {
           System.out.print("Podaj numer miejsca: ");
           int place = skaner.nextInt() - 1;
 
-
-          //System.out.println(mejn.makeAGuess(letter, place, list, invisibleList));
-          if(mejn.makeAGuess(letter,place,list,invisibleList)==false){
+          if(!mejn.makeAGuess(letter, place, list, invisibleList)){
               errCount++;
           }else{
               goodCount--;
