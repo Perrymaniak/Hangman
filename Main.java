@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-import static java.lang.Character.toLowerCase;
-
 public class Main {
 
 
@@ -63,9 +61,12 @@ public class Main {
 
           System.out.println("\n\n\n");
           int goodCount = list.length;
+
+
+
       do {
           Scanner skaner = new Scanner(System.in);
-          System.out.print("Podaj literę: ");
+          System.out.print("\nPodaj literę: ");
           char letter = skaner.next().charAt(0);
           System.out.print("Podaj numer miejsca: ");
           int place = skaner.nextInt() - 1;
@@ -76,14 +77,13 @@ public class Main {
               goodCount--;
           }
 
-//          errCount=mejn.addErrorCounter(errCount);
-
       }while(errCount<5 && goodCount>0);
   }
   }
 
 
   //TODO: Exception handling
+  //TODO: Change txt do json
 
 
 
